@@ -55,6 +55,16 @@ int main() {
             word_output << word << ": " << count << "\n";
         }
     }
-    
+
+    for (const auto& [word, lines] : word_lines) {
+        if (word_count[word] > 1) {
+            cross_ref_output << word << " pasirodė eilutėse: ";
+            for (int ln : lines) {
+                cross_ref_output << ln << " ";
+            }
+            cross_ref_output << "\n";
+        }
+    }
+
     return 0;
 }

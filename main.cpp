@@ -7,6 +7,7 @@
 #include <regex>
 #include <cctype>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -62,10 +63,10 @@ int main() {
 
     for (const auto& [word, count] : word_count) {
         if (count > 1) {
-            word_output << word << ": " << count << "\n";
+            word_output << left << setw(20) << word << count << "\n";
         }
     }
-
+    
     for (const auto& [word, lines] : word_lines) {
         if (word_count[word] > 1) {
             cross_ref_output << word << " pasirodė eilutėse: ";

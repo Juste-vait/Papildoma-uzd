@@ -66,17 +66,17 @@ int main() {
             word_output << left << setw(20) << word << count << "\n";
         }
     }
-    
+
     for (const auto& [word, lines] : word_lines) {
         if (word_count[word] > 1) {
-            cross_ref_output << word << " pasirodė eilutėse: ";
+            cross_ref_output << left << setw(20) << word << " pasirodė eilutėse: ";
             for (int ln : lines) {
                 cross_ref_output << ln << " ";
             }
             cross_ref_output << "\n";
         }
     }
-
+    
     for (const string& url : urls) {
         url_output << url << "\n";
     }

@@ -24,6 +24,7 @@ int main() {
     ifstream input("input.txt");
     ofstream word_output("output.txt");
     ofstream cross_ref_output("cross_reference.txt");
+    ofstream url_output("urls.txt");
 
     if (!input.is_open()) {
         cerr << "Nepavyko atidaryti input.txt\n";
@@ -32,6 +33,9 @@ int main() {
 
     map<string, int> word_count;
     map<string, set<int>> word_lines;
+    set<string> urls;
+
+    regex url_pattern(R"((https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\S*)?)");
 
     string line;
     int line_number = 0;
@@ -47,6 +51,12 @@ int main() {
                 word_count[converted]++;
                 word_lines[converted].insert(line_number);
             }
+        }
+
+        sregex_iterator begin(line.begin(), line.end(), url_pattern);
+        sregex_iterator end;
+        for (auto it = begin; it != end; ++it) {
+            urls.insert(it->str());
         }
     }
 
@@ -64,6 +74,10 @@ int main() {
             }
             cross_ref_output << "\n";
         }
+    }
+
+    for (const string& url : urls) {
+        url_output << url << "\n";
     }
 
     return 0;

@@ -35,7 +35,7 @@ int main() {
     map<string, set<int>> word_lines;
     set<string> urls;
 
-    regex url_pattern(R"((https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\S*)?)");
+    regex url_pattern(R"((https?:\/\/[^\s]+)|(www\.[^\s]+)|([a-zA-Z0-9.-]+\.[a-zA-Z]{2,}))");
 
     string line;
     int line_number = 0;
